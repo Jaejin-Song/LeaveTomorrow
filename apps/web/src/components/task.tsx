@@ -1,6 +1,7 @@
 import { ChangeEventHandler } from "react";
 import { Checkbox } from "./ui/checkbox";
 import { Input } from "./ui/input";
+import { cn } from "@/lib/utils";
 
 export type Task = {
   id: string;
@@ -10,13 +11,17 @@ export type Task = {
 };
 
 export function TaskItem({
-  taskInfo,
+  task,
   onCheckedChange,
+  onClick,
+  selected = false,
 }: {
-  taskInfo: Task;
+  task: Task;
   onCheckedChange: (val: boolean, id: string) => void;
+  onClick: () => void;
+  selected?: boolean;
 }) {
-  const { id } = taskInfo;
+  const { id, isChecked, title } = task;
 
   const onCheckboxChange = (checked: boolean | "indeterminate") => {
     if (checked === "indeterminate") return;
@@ -29,16 +34,21 @@ export function TaskItem({
   };
 
   return (
-    <div className="px-2 py-1.5">
-      <div className="px-3 rounded-md flex items-center hover:bg-accent hover:text-accent-foreground">
+    <div className="px-2 py-1.5" onClick={onClick}>
+      <div
+        className={cn(
+          "px-3 rounded-md flex items-center hover:bg-accent hover:text-accent-foreground",
+          selected && "bg-muted"
+        )}
+      >
         <Checkbox
-          checked={taskInfo.isChecked}
+          checked={isChecked}
           onCheckedChange={onCheckboxChange}
           style={{ width: "16px", height: "16px" }}
         />
         <Input
           className="border-none shadow-none focus-visible:shadow-none focus-visible:outline-0 focus-visible:ring-transparent"
-          value={taskInfo.title}
+          value={title}
           size={15}
           onChange={onInputChange}
         />

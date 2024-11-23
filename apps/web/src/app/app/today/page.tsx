@@ -49,7 +49,7 @@ export default function Page() {
 
   return (
     <div className="flex flex-col">
-      <div className="flex items-center px-4 py-2">
+      <div className="h-12 flex items-center px-4 py-2">
         <h1 className="text-xl font-bold">Today</h1>
       </div>
       <Separator />

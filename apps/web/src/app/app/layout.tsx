@@ -8,6 +8,7 @@ import {
 import Nav from "@/components/nav";
 import { useState } from "react";
 import { Calendar, CalendarClock } from "lucide-react";
+import { Detail } from "@/components/detail";
 
 const links = [
   {
@@ -47,7 +48,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </ResizablePanel>
       <ResizableHandle />
       <ResizablePanel defaultSize={48} minSize={30}>
-        <div>detail</div>
+        <Detail />
       </ResizablePanel>
     </ResizablePanelGroup>
   );
